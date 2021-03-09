@@ -5,4 +5,7 @@
 /vendor
 
 # ignore assets
-frontend/web/assets
+/frontend/web/assets
+
+# ignore runtime
+/console/runtime/logs
