@@ -1,4 +1,5 @@
 <?php
+
 return [
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
@@ -32,6 +33,11 @@ return [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
+        ],
+    ],
+    'modules' => [
+        'user' => [
+            'class' => app\modules\user\UserModule::class,
         ],
     ],
 ];
