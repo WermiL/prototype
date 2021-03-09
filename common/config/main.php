@@ -6,6 +6,9 @@ return [
     ],
     'vendorPath' => dirname(__DIR__, 2) . '/vendor',
     'components' => [
+        'request' => [
+            'cookieValidationKey' => 'P_mpw4mfp9JBAhC9cAPx1nsv4yawcBNO',
+        ],
         'redis' => [
             'class' => 'yii\redis\Connection',
             'hostname' => 'localhost',

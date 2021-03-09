@@ -1,4 +1,5 @@
 <?php
+
 $params = array_merge(
     require __DIR__ . '/../../common/config/params.php',
     require __DIR__ . '/../../common/config/params-local.php',
@@ -16,20 +17,19 @@ return [
             'csrfParam' => '_csrf-frontend',
         ],
         'user' => [
-            'identityClass' => 'frontend\models\User',
+            'identityClass' => frontend\models\User::class,
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
-            'class' => 'yii\redis\Session',
+            'class' => yii\redis\Session::class,
             'name' => 'advanced-frontend',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
             'targets' => [
                 [
-                    'class' => 'yii\log\FileTarget',
+                    'class' => yii\log\FileTarget::class,
                     'levels' => ['error', 'warning'],
                 ],
             ],
