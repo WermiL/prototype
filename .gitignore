@@ -9,3 +9,9 @@
 
 # ignore runtime
 /console/runtime/logs
+
+frontend/runtime/cache
+frontend/runtime/debug
+frontend/runtime/logs
+frontend/runtime/mail
+
