@@ -2,20 +2,20 @@
 
 namespace frontend\modules\user\controllers;
 
+use frontend\modules\user\forms\LoginForm;
+use frontend\modules\user\forms\PasswordResetRequestForm;
 use frontend\modules\user\forms\ResendVerificationEmailForm;
+use frontend\modules\user\forms\ResetPasswordForm;
+use frontend\modules\user\forms\SignupForm;
 use frontend\modules\user\forms\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
+use yii\captcha\CaptchaAction;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\BadRequestHttpException;
 use yii\web\Controller;
-use yii\filters\VerbFilter;
-use yii\filters\AccessControl;
-use frontend\modules\user\forms\LoginForm;
-use frontend\modules\user\forms\PasswordResetRequestForm;
-use frontend\modules\user\forms\ResetPasswordForm;
-use frontend\modules\user\forms\SignupForm;
 use yii\web\ErrorAction;
-use yii\captcha\CaptchaAction;
 
 /**
  * Site controller
@@ -112,16 +112,6 @@ class UserController extends Controller
         Yii::$app->user->logout();
 
         return $this->goHome();
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 
     /**
