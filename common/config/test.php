@@ -1,11 +1,15 @@
 <?php
 return [
-    'id' => 'app-common-tests',
-    'basePath' => dirname(__DIR__),
     'components' => [
-        'user' => [
-            'class' => 'yii\web\User',
-            'identityClass' => 'frontend\models\User',
+        'db' => [
+            'class' => 'yii\db\Connection',
+            'dsn' => 'mysql:host=localhost;dbname=localdbtest',
+            'username' => 'localuser',
+            'password' => 'localpass',
+            'charset' => 'utf8',
+            //'enableSchemaCache' => true,
+            //'schemaCacheDuration' => 60,
+            //'schemaCache' => 'cache',
         ],
     ],
 ];
