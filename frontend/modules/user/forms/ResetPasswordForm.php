@@ -1,4 +1,5 @@
 <?php
+
 namespace frontend\modules\user\forms;
 
 use yii\base\InvalidArgumentException;
