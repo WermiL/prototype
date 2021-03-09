@@ -2,7 +2,7 @@
 
 namespace tests\functional;
 
-use frontend\fixtures\UserFixture;
+use tests\fixtures\UserFixture;
 use tests\FunctionalTester;
 
 class ResendVerificationEmailCest

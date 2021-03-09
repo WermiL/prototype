@@ -2,7 +2,7 @@
 
 namespace tests\unit\models;
 
-use frontend\fixtures\UserFixture;
+use tests\fixtures\UserFixture;
 use frontend\models\VerifyEmailForm;
 
 class VerifyEmailFormTest extends \Codeception\Test\Unit
