@@ -12,22 +12,18 @@ use yii\base\Model;
  */
 class SignupForm extends Model
 {
-    public $username;
+
     public $email;
     public $password;
-
-
+    public $nickname;
+    public $first_name;
+    public $last_name;
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            ['username', 'trim'],
-            ['username', 'required'],
-            ['username', 'unique', 'targetClass' => User::class, 'message' => 'This username has already been taken.'],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
@@ -36,6 +32,16 @@ class SignupForm extends Model
 
             ['password', 'required'],
             ['password', 'string', 'min' => 8],
+
+            ['nickname', 'trim'],
+            ['nickname', 'unique', 'targetClass' => User::class, 'message' => 'This nickname has already been taken.'],
+            ['nickname', 'string', 'min' => 2, 'max' => 255],
+
+            ['first_name', 'trim'],
+            ['first_name', 'string', 'min' => 2, 'max' => 255],
+
+            ['last_name', 'trim'],
+            ['last_name', 'string', 'min' => 2, 'max' => 255],
         ];
     }
 
@@ -51,8 +57,10 @@ class SignupForm extends Model
         }
 
         $user = new User();
-        $user->username = $this->username;
         $user->email = $this->email;
+        $user->nickname = $this->nickname;
+        $user->first_name = $this->first_name;
+        $user->last_name = $this->last_name;
         $user->setPassword($this->password);
         $user->generateAuthKey();
         $user->generateEmailVerificationToken();

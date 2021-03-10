@@ -1,7 +1,9 @@
 <?php
 return [
     [
-        'username' => 'erau',
+        'nickname' => 'erau',
+        'first_name' => 'first_name_1',
+        'last_name' => 'last_name_1',
         'auth_key' => 'tUu1qHcde0diwUol3xeI-18MuHkkprQI',
         // password_0
         'password_hash' => '$2y$13$nJ1WDlBaGcbCdbNC5.5l4.sgy.OMEKCqtDQOdQ2OWpgiKRWYyzzne',
@@ -11,7 +13,9 @@ return [
         'email' => 'sfriesen@jenkins.info',
     ],
     [
-        'username' => 'test.test',
+        'nickname' => 'test.test',
+        'first_name' => 'first_name_2',
+        'last_name' => 'last_name_2',
         'auth_key' => 'O87GkY3_UfmMHYkyezZ7QLfmkKNsllzT',
         // Test1234
         'password_hash' => 'O87GkY3_UfmMHYkyezZ7QLfmkKNsllzT',
