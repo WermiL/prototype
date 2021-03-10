@@ -8,6 +8,10 @@ $this->title = 'My Yii Application';
 
     <div class="jumbotron">
         <h1>Congratulations!</h1>
+        <?= Yii::t('gg','hh')?>
+    </div>
+    <div class="jumbotron">
+        <?= Yii::t('ll','nn')?>
     </div>
 
 

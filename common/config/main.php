@@ -1,10 +1,13 @@
 <?php
 
+use console\models\TranslationEventHandler;
+
 return [
-    'name'=>'Yii App',
+    'name' => 'Yii App',
+    'language' => 'ru-RU',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
-        '@npm'   => '@vendor/npm-asset',
+        '@npm' => '@vendor/npm-asset',
     ],
     'vendorPath' => dirname(__DIR__, 2) . '/vendor',
     'components' => [
@@ -34,6 +37,20 @@ return [
             // 'useFileTransport' to false and configure a transport
             // for the mailer to send real emails.
             'useFileTransport' => true,
+        ],
+        'i18n' => [
+            'translations' => [
+                '*' => [
+                    'class' => \yii\i18n\DbMessageSource::class,
+                    'sourceMessageTable'=>'{{%i18n_source_message}}',
+                    'messageTable'=>'{{%i18n_message}}',
+                    'enableCaching' => false,
+                    'cachingDuration' => 0,
+                    'forceTranslation'=>true,
+                    'sourceLanguage' =>'en_US',
+                    'on missingTranslation' => [TranslationEventHandler::class, 'handleMissingTranslation']
+                ],
+            ],
         ],
     ],
 ];
