@@ -3,12 +3,14 @@
 namespace tests\unit\models;
 
 use tests\fixtures\UserFixture;
-use frontend\models\VerifyEmailForm;
+use frontend\modules\user\forms\VerifyEmailForm;
+use frontend\modules\user\models\User;
+use yii\base\InvalidArgumentException;
 
 class VerifyEmailFormTest extends \Codeception\Test\Unit
 {
     /**
-     * @var \frontend\tests\UnitTester
+     * @var \tests\UnitTester
      */
     protected $tester;
 
@@ -17,7 +19,7 @@ class VerifyEmailFormTest extends \Codeception\Test\Unit
     {
         $this->tester->haveFixtures([
             'user' => [
-                'class' => UserFixture::className(),
+                'class' => UserFixture::class,
                 'dataFile' => codecept_data_dir() . 'user.php'
             ]
         ]);
@@ -25,18 +27,18 @@ class VerifyEmailFormTest extends \Codeception\Test\Unit
 
     public function testVerifyWrongToken()
     {
-        $this->tester->expectException('\yii\base\InvalidArgumentException', function() {
+        $this->tester->expectException(InvalidArgumentException::class, function() {
             new VerifyEmailForm('');
         });
 
-        $this->tester->expectException('\yii\base\InvalidArgumentException', function() {
+        $this->tester->expectException(InvalidArgumentException::class, function() {
             new VerifyEmailForm('notexistingtoken_1391882543');
         });
     }
 
     public function testAlreadyActivatedToken()
     {
-        $this->tester->expectException('\yii\base\InvalidArgumentException', function() {
+        $this->tester->expectException(InvalidArgumentException::class, function() {
             new VerifyEmailForm('already_used_token_1548675330');
         });
     }
@@ -45,11 +47,11 @@ class VerifyEmailFormTest extends \Codeception\Test\Unit
     {
         $model = new VerifyEmailForm('4ch0qbfhvWwkcuWqjN8SWRq72SOw1KYT_1548675330');
         $user = $model->verifyEmail();
-        expect($user)->isInstanceOf('frontend\models\User');
+        expect($user)->isInstanceOf(User::class);
 
         expect($user->username)->equals('test.test');
         expect($user->email)->equals('test@mail.com');
-        expect($user->status)->equals(\frontend\models\User::STATUS_ACTIVE);
+        expect($user->status)->equals(User::STATUS_ACTIVE);
         expect($user->validatePassword('Test1234'))->true();
     }
 }

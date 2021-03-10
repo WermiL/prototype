@@ -3,6 +3,7 @@
 namespace tests\functional;
 
 use tests\FunctionalTester;
+use frontend\modules\user\models\User;
 
 class SignupCest
 {
@@ -11,7 +12,7 @@ class SignupCest
 
     public function _before(FunctionalTester $I)
     {
-        $I->amOnRoute('site/signup');
+        $I->amOnRoute('user/signup');
     }
 
     public function signupWithEmptyFields(FunctionalTester $I)
@@ -47,10 +48,10 @@ class SignupCest
             'SignupForm[password]' => 'tester_password',
         ]);
 
-        $I->seeRecord('frontend\models\User', [
+        $I->seeRecord(User::class, [
             'username' => 'tester',
             'email' => 'tester.email@example.com',
-            'status' => \frontend\models\User::STATUS_INACTIVE
+            'status' => User::STATUS_INACTIVE
         ]);
 
         $I->seeEmailIsSent();

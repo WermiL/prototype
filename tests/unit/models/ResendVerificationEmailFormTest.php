@@ -5,12 +5,13 @@ namespace tests\unit\models;
 
 use Codeception\Test\Unit;
 use tests\fixtures\UserFixture;
-use frontend\models\ResendVerificationEmailForm;
+use frontend\modules\user\forms\ResendVerificationEmailForm;
+use yii\mail\MessageInterface;
 
 class ResendVerificationEmailFormTest extends Unit
 {
     /**
-     * @var \frontend\tests\UnitTester
+     * @var \tests\UnitTester
      */
     protected $tester;
 
@@ -76,7 +77,7 @@ class ResendVerificationEmailFormTest extends Unit
 
         $mail = $this->tester->grabLastSentEmail();
 
-        expect('valid email is sent', $mail)->isInstanceOf('yii\mail\MessageInterface');
+        expect('valid email is sent', $mail)->isInstanceOf(MessageInterface::class);
         expect($mail->getTo())->hasKey('test@mail.com');
         expect($mail->getFrom())->hasKey(\Yii::$app->params['supportEmail']);
         expect($mail->getSubject())->equals('Account registration at ' . \Yii::$app->name);

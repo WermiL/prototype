@@ -4,6 +4,7 @@ namespace tests\functional;
 
 use tests\fixtures\UserFixture;
 use tests\FunctionalTester;
+use frontend\modules\user\models\User;
 
 class ResendVerificationEmailCest
 {
@@ -29,7 +30,7 @@ class ResendVerificationEmailCest
 
     public function _before(FunctionalTester $I)
     {
-        $I->amOnRoute('/site/resend-verification-email');
+        $I->amOnRoute('user/signup/resend-verification-email');
     }
 
     protected function formParams($email)
@@ -73,10 +74,10 @@ class ResendVerificationEmailCest
     {
         $I->submitForm($this->formId, $this->formParams('test@mail.com'));
         $I->canSeeEmailIsSent();
-        $I->seeRecord('frontend\models\User', [
+        $I->seeRecord(User::class, [
             'email' => 'test@mail.com',
             'username' => 'test.test',
-            'status' => \frontend\models\User::STATUS_INACTIVE
+            'status' => User::STATUS_INACTIVE
         ]);
         $I->see('Check your email for further instructions.');
     }

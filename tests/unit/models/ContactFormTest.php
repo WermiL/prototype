@@ -24,7 +24,7 @@ class ContactFormTest extends \Codeception\Test\Unit
 
         /** @var MessageInterface  $emailMessage */
         $emailMessage = $this->tester->grabLastSentEmail();
-        expect('valid email is sent', $emailMessage)->isInstanceOf('yii\mail\MessageInterface');
+        expect('valid email is sent', $emailMessage)->isInstanceOf(MessageInterface::class);
         expect($emailMessage->getTo())->hasKey('admin@example.com');
         expect($emailMessage->getFrom())->hasKey('noreply@example.com');
         expect($emailMessage->getReplyTo())->hasKey('tester@example.com');
