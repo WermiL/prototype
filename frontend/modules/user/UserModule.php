@@ -1,11 +1,13 @@
 <?php
 
-namespace app\modules\user;
+
+namespace frontend\modules\user;
 
 use Yii;
 
 class UserModule extends \yii\base\Module
 {
+
     public function init()
     {
         parent::init();

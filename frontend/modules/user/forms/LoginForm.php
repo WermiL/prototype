@@ -4,6 +4,7 @@ namespace frontend\modules\user\forms;
 
 use Yii;
 use yii\base\Model;
+use frontend\modules\user\models\User;
 
 /**
  * Login form

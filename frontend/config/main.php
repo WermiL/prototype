@@ -42,7 +42,13 @@ return [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+
             ],
+        ],
+    ],
+    'modules' => [
+        'user' => [
+            'class' => \frontend\modules\user\UserModule::class,
         ],
     ],
     'params' => $params,

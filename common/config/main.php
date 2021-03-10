@@ -35,9 +35,4 @@ return [
             'useFileTransport' => true,
         ],
     ],
-    'modules' => [
-        'user' => [
-            'class' => app\modules\user\UserModule::class,
-        ],
-    ],
 ];
