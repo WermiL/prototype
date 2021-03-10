@@ -2,13 +2,9 @@
 
 namespace frontend\controllers;
 
-use frontend\forms\ContactForm;
+use frontend\models\forms\ContactForm;
 use Yii;
-use yii\base\InvalidArgumentException;
 use yii\captcha\CaptchaAction;
-use yii\filters\AccessControl;
-use yii\filters\VerbFilter;
-use yii\web\BadRequestHttpException;
 use yii\web\Controller;
 use yii\web\ErrorAction;
 
