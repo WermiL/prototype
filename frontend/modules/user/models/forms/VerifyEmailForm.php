@@ -1,8 +1,8 @@
 <?php
 
-namespace frontend\modules\user\forms;
+namespace frontend\modules\user\models\forms;
 
-use frontend\modules\user\models\User;
+use frontend\modules\user\models\records\User;
 use yii\base\InvalidArgumentException;
 use yii\base\Model;
 

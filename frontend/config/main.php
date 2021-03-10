@@ -18,7 +18,7 @@ return [
             'cookieValidationKey' => 'P_mpw4mfp9JBAhC9cAPx1nsv4yawcBNO',
         ],
         'user' => [
-            'identityClass' => frontend\models\User::class,
+            'identityClass' => frontend\modules\user\models\records\User::class,
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],

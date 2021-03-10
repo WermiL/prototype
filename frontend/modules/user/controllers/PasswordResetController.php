@@ -2,8 +2,8 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\modules\user\forms\PasswordResetRequestForm;
-use frontend\modules\user\forms\ResetPasswordForm;
+use frontend\modules\user\models\forms\PasswordResetRequestForm;
+use frontend\modules\user\models\forms\ResetPasswordForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\captcha\CaptchaAction;

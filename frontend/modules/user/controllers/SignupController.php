@@ -2,9 +2,9 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\modules\user\forms\ResendVerificationEmailForm;
-use frontend\modules\user\forms\SignupForm;
-use frontend\modules\user\forms\VerifyEmailForm;
+use frontend\modules\user\models\forms\ResendVerificationEmailForm;
+use frontend\modules\user\models\forms\SignupForm;
+use frontend\modules\user\models\forms\VerifyEmailForm;
 use Yii;
 use yii\base\InvalidArgumentException;
 use yii\captcha\CaptchaAction;

@@ -3,7 +3,7 @@
 namespace tests\unit\models;
 
 use tests\fixtures\UserFixture;
-use frontend\modules\user\forms\ResetPasswordForm;
+use frontend\modules\user\models\forms\ResetPasswordForm;
 use yii\base\InvalidArgumentException;
 
 class ResetPasswordFormTest extends \Codeception\Test\Unit

@@ -2,8 +2,8 @@
 namespace tests\unit\models;
 
 use tests\fixtures\UserFixture;
-use frontend\modules\user\forms\SignupForm;
-use frontend\modules\user\models\User;
+use frontend\modules\user\models\forms\SignupForm;
+use frontend\modules\user\models\records\User;
 use yii\mail\MessageInterface;
 
 class SignupFormTest extends \Codeception\Test\Unit
@@ -35,7 +35,7 @@ class SignupFormTest extends \Codeception\Test\Unit
         $user = $model->signup();
         expect($user)->true();
 
-        /** @var \frontend\modules\user\models\User $user */
+        /** @var \frontend\modules\user\models\records\User $user */
         $user = $this->tester->grabRecord(User::class, [
             'username' => 'some_username',
             'email' => 'some_email@example.com',

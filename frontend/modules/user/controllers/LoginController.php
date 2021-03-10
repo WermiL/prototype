@@ -2,7 +2,7 @@
 
 namespace frontend\modules\user\controllers;
 
-use frontend\modules\user\forms\LoginForm;
+use frontend\modules\user\models\forms\LoginForm;
 use Yii;
 use yii\captcha\CaptchaAction;
 use yii\filters\VerbFilter;

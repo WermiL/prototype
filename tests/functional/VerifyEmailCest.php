@@ -4,7 +4,7 @@ namespace tests\functional;
 
 use tests\fixtures\UserFixture;
 use tests\FunctionalTester;
-use frontend\modules\user\models\User;
+use frontend\modules\user\models\records\User;
 
 class VerifyEmailCest
 {

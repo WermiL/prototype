@@ -1,10 +1,10 @@
 <?php
 
 
-namespace frontend\models;
+namespace frontend\modules\user\models\forms;
 
+use frontend\modules\user\models\records\User;
 use Yii;
-use frontend\models\User;
 use yii\base\Model;
 
 class ResendVerificationEmailForm extends Model
@@ -25,7 +25,7 @@ class ResendVerificationEmailForm extends Model
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'exist',
-                'targetClass' => '\frontend\models\User',
+                'targetClass' => User::class,
                 'filter' => ['status' => User::STATUS_INACTIVE],
                 'message' => 'There is no user with this email address.'
             ],
