@@ -1,6 +1,6 @@
 <?php
 
-namespace console\models;
+namespace frontend\modules\i18n\models;
 
 use yii\i18n\MissingTranslationEvent;
 

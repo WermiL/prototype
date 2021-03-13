@@ -1,6 +1,7 @@
 <?php
-namespace frontend\modules\user\models\records;
+namespace frontend\modules\user\models\query;
 
+use frontend\modules\user\models\records\User;
 use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
@@ -8,58 +9,11 @@ use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 
 /**
- * User model
- *
- * @property integer $id
- * @property string $email
- * @property string $nickname
- * @property string $first_name
- * @property string $last_name
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $verification_token
- * @property string $auth_key
- * @property integer $status
- * @property integer $created_at
- * @property integer $updated_at
- * @property string $password write-only password
+ * User query
  */
-class User extends ActiveRecord implements IdentityInterface
+class UserQuery extends User
 {
-    const STATUS_DELETED = 0;
-    const STATUS_INACTIVE = 9;
-    const STATUS_ACTIVE = 10;
     const PASSWORD_RESET_TOKEN_EXPIRE = 3600;
-
-
-    /**
-     * {@inheritdoc}
-     */
-    public static function tableName()
-    {
-        return '{{%user}}';
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function behaviors()
-    {
-        return [
-            TimestampBehavior::class,
-        ];
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function rules()
-    {
-        return [
-            ['status', 'default', 'value' => self::STATUS_INACTIVE],
-            ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
-        ];
-    }
 
     /**
      * {@inheritdoc}

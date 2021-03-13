@@ -9,7 +9,7 @@
  * You can use 'yii message/config-template' command to create
  * template configuration file with detailed description for each parameter.
  *
- *  php yii message/extract @console/i18n/i18nExtractConfig.php
+ *  php yii message/extract @frontend/modules/i18n/console/extractConfig.php
  *
  */
 return [

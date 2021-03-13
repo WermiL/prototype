@@ -1,6 +1,6 @@
 <?php
 
-use console\models\TranslationEventHandler;
+use frontend\modules\i18n\models\TranslationEventHandler;
 
 return [
     'name' => 'Yii App',
