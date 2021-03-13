@@ -14,13 +14,13 @@ class m210310_185647_create_i18n_table extends Migration
 
         $this->createTable('{{%i18n_source_message}}', [
             'id' => $this->primaryKey(),
-            'category' => $this->string()->notNull(),
-            'message' => $this->text()->notNull(),
+            'category' => $this->string()->notNull()->defaultValue(''),
+            'message' => $this->text()->notNull()->defaultValue(''),
         ]);
 
         $this->createTable('{{%i18n_message}}', [
-            'id' => $this->integer()->notNull(),
-            'language' => $this->string(16)->notNull(),
+            'id' => $this->integer()->unsigned()->notNull(),
+            'language' => $this->string(16)->notNull()->defaultValue(''),
             'translation' => $this->text()->notNull()->defaultValue(''),
         ]);
 

@@ -18,7 +18,7 @@ return [
     'help' => false,
     'silentExitOnException' => null,
     'sourcePath' => '@frontend',
-    'languages' => ['ru-RU','uk-UA','en-US'],
+    'languages' => ['en-US'],
     'translator' => 'Yii::t',
     'sort' => false,
     'overwrite' => true,
