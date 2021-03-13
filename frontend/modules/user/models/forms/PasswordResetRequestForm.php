@@ -2,22 +2,25 @@
 
 namespace frontend\modules\user\models\forms;
 
+use frontend\modules\user\models\query\UserQuery;
 use frontend\modules\user\models\records\User;
 use Yii;
 use yii\base\Model;
 
 /**
  * Password reset request form
+ *
+ * @property string $email
  */
 class PasswordResetRequestForm extends Model
 {
-    public $email;
+    public string $email;
 
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['email', 'trim'],
@@ -36,10 +39,9 @@ class PasswordResetRequestForm extends Model
      *
      * @return bool whether the email was send
      */
-    public function sendEmail()
+    public function sendEmail(): bool
     {
-        /* @var $user User */
-        $user = User::findOne([
+        $user = UserQuery::findOne([
             'status' => User::STATUS_ACTIVE,
             'email' => $this->email,
         ]);

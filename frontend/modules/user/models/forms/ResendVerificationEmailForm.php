@@ -3,22 +3,25 @@
 
 namespace frontend\modules\user\models\forms;
 
+use frontend\modules\user\models\query\UserQuery;
 use frontend\modules\user\models\records\User;
 use Yii;
 use yii\base\Model;
 
+/**
+ * Resend Verification Email Form
+ *
+ * @property string $email
+ */
 class ResendVerificationEmailForm extends Model
 {
-    /**
-     * @var string
-     */
-    public $email;
 
+    public string $email;
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
         return [
             ['email', 'trim'],
@@ -37,9 +40,9 @@ class ResendVerificationEmailForm extends Model
      *
      * @return bool whether the email was sent
      */
-    public function sendEmail()
+    public function sendEmail(): bool
     {
-        $user = User::findOne([
+        $user = UserQuery::findOne([
             'email' => $this->email,
             'status' => User::STATUS_INACTIVE
         ]);

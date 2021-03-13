@@ -31,8 +31,8 @@ class SignupFormTest extends \Codeception\Test\Unit
             'password' => 'some_password',
         ]);
 
-        $user = $model->signup();
-        expect($user)->true();
+        $signup = $model->signup();
+        expect($signup)->true();
 
         /** @var \frontend\modules\user\models\records\User $user */
         $user = $this->tester->grabRecord(User::class, [

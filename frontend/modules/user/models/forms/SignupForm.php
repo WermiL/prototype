@@ -9,20 +9,30 @@ use yii\base\Model;
 
 /**
  * Signup form
+ *
+ * @property string $email
+ * @property string $password
+ * @property string|null $nickname
+ * @property string|null $first_name
+ * @property string|null $last_name
  */
 class SignupForm extends Model
 {
 
-    public $email;
-    public $password;
-    public $nickname;
-    public $first_name;
-    public $last_name;
+    public string $email;
+    public string $password;
+    public ?string $nickname;
+    public ?string $first_name;
+    public ?string $last_name;
+
     /**
      * {@inheritdoc}
      */
-    public function rules()
+    public function rules(): array
     {
+
+        $this->last_name = 7;
+
         return [
             ['email', 'trim'],
             ['email', 'required'],
@@ -50,10 +60,10 @@ class SignupForm extends Model
      *
      * @return bool whether the creating new account was successful and email was sent
      */
-    public function signup()
+    public function signup(): bool
     {
         if (!$this->validate()) {
-            return null;
+            return false;
         }
 
         $user = new User();
@@ -73,7 +83,7 @@ class SignupForm extends Model
      * @param User $user user model to with email should be send
      * @return bool whether the email was sent
      */
-    protected function sendEmail($user)
+    protected function sendEmail(User $user): bool
     {
         return Yii::$app
             ->mailer
