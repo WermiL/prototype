@@ -14,8 +14,8 @@ use yii\base\Model;
  */
 class ResetPasswordForm extends Model
 {
-    public ?string $password;
-    private ?UserQuery $_user;
+    public $password;
+    private $_user;
 
 
     /**
@@ -25,7 +25,7 @@ class ResetPasswordForm extends Model
      * @param array $config name-value pairs that will be used to initialize the object properties
      * @throws InvalidArgumentException if token is empty or not valid
      */
-    public function __construct(?string$token, $config = [])
+    public function __construct($token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
             throw new InvalidArgumentException('Password reset token cannot be blank.');
@@ -40,7 +40,7 @@ class ResetPasswordForm extends Model
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             ['password', 'required'],
@@ -53,7 +53,7 @@ class ResetPasswordForm extends Model
      *
      * @return bool if password was reset.
      */
-    public function resetPassword(): bool
+    public function resetPassword()
     {
         $user = $this->_user;
         $user->setPassword($this->password);

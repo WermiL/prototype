@@ -3,7 +3,6 @@
 namespace frontend\modules\user\models\forms;
 
 use frontend\modules\user\models\query\UserQuery;
-use frontend\modules\user\models\UserIdentity;
 use Yii;
 use yii\base\Model;
 
@@ -17,11 +16,11 @@ use yii\base\Model;
  */
 class LoginForm extends Model
 {
-    public string $email;
-    public string $password;
-    public bool $rememberMe = true;
+    public $email;
+    public $password;
+    public $rememberMe = true;
 
-    private ?UserQuery $_user;
+    private $_user;
 
 
     /**
@@ -45,7 +44,7 @@ class LoginForm extends Model
      * @param string $attribute the attribute currently being validated
      * @param array $params the additional name-value pairs given in the rule
      */
-    public function validatePassword(string $attribute,array $params): void
+    public function validatePassword($attribute, $params)
     {
         if (!$this->hasErrors()) {
             $user = $this->getUser();
@@ -60,11 +59,10 @@ class LoginForm extends Model
      *
      * @return bool whether the user is logged in successfully
      */
-    public function login(): bool
+    public function login()
     {
         if ($this->validate()) {
-            $userIdentity = $this->getUserIdentity();
-            return Yii::$app->user->login($userIdentity, $this->rememberMe ? 3600 * 24 * 30 : 0);
+            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600 * 24 * 30 : 0);
         }
 
         return false;
@@ -75,27 +73,12 @@ class LoginForm extends Model
      *
      * @return UserQuery|null
      */
-    protected function getUser(): ?UserQuery
+    protected function getUser()
     {
         if ($this->_user === null) {
             $this->_user = UserQuery::findByEmail($this->email);
         }
 
         return $this->_user;
-    }
-
-    /**
-     * get User Identity
-     *
-     * @return UserIdentity
-     */
-    protected function getUserIdentity(): UserIdentity
-    {
-        $this->getUser();
-        $userIdentity = new UserIdentity();
-        if ($this->_user !== null) {
-            $userIdentity->attributes = $this->_user->attributes;
-        }
-        return $userIdentity;
     }
 }

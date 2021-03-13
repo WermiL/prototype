@@ -14,8 +14,8 @@ use yii\base\Model;
  */
 class VerifyEmailForm extends Model
 {
-    public ?string $token;
-    private ?UserQuery $_user;
+    public $token;
+    private $_user;
 
 
     /**
@@ -25,7 +25,7 @@ class VerifyEmailForm extends Model
      * @param array $config name-value pairs that will be used to initialize the object properties
      * @throws InvalidArgumentException if token is empty or not valid
      */
-    public function __construct(?string $token, array $config = [])
+    public function __construct( $token, $config = [])
     {
         if (empty($token) || !is_string($token)) {
             throw new InvalidArgumentException('Verify email token cannot be blank.');
@@ -42,7 +42,7 @@ class VerifyEmailForm extends Model
      *
      * @return UserQuery|null the saved model or null if saving fails
      */
-    public function verifyEmail(): ?UserQuery
+    public function verifyEmail()
     {
         $user = $this->_user;
         $user->status = User::STATUS_ACTIVE;

@@ -29,7 +29,7 @@ class SignupCest
     {
         $I->submitForm(
             $this->formId, [
-            'SignupForm[email]'     => 'ttttt',
+            'SignupForm[email]'     => 'tttt',
             'SignupForm[password]'  => 'tester_password',
         ]
         );
@@ -41,12 +41,12 @@ class SignupCest
     public function signupSuccessfully(FunctionalTester $I)
     {
         $I->submitForm($this->formId, [
-            'SignupForm[email]' => 'tester.email@example.com',
+            'SignupForm[email]' => 'testers.email@example.com',
             'SignupForm[password]' => 'tester_password',
         ]);
 
         $I->seeRecord(User::class, [
-            'email' => 'tester.email@example.com',
+            'email' => 'testers.email@example.com',
             'status' => User::STATUS_INACTIVE
         ]);
 

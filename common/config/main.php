@@ -4,7 +4,7 @@ use frontend\modules\i18n\models\TranslationEventHandler;
 
 return [
     'name' => 'Yii App',
-    'language' => 'ru-RU',
+    'language' => 'en-US',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm' => '@vendor/npm-asset',

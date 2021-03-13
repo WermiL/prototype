@@ -9,7 +9,7 @@ class m210310_145353_create_user_table extends Migration
         $this->createTable('{{%user}}', [
             'id' => $this->primaryKey(),
             'email' => $this->string()->notNull()->unique(),
-            'nickname' => $this->string()->notNull()->unique(),
+            'nickname' => $this->string()->null()->defaultValue(null)->unique(),
             'first_name' => $this->string()->null()->defaultValue(null),
             'last_name' => $this->string()->null()->defaultValue(null),
             'auth_key' => $this->string(32)->notNull(),

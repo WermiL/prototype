@@ -14,13 +14,13 @@ use yii\base\Model;
  */
 class PasswordResetRequestForm extends Model
 {
-    public string $email;
+    public $email;
 
 
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             ['email', 'trim'],
@@ -39,7 +39,7 @@ class PasswordResetRequestForm extends Model
      *
      * @return bool whether the email was send
      */
-    public function sendEmail(): bool
+    public function sendEmail()
     {
         $user = UserQuery::findOne([
             'status' => User::STATUS_ACTIVE,

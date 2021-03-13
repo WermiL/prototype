@@ -16,12 +16,12 @@ use yii\base\Model;
 class ResendVerificationEmailForm extends Model
 {
 
-    public string $email;
+    public $email;
 
     /**
      * {@inheritdoc}
      */
-    public function rules(): array
+    public function rules()
     {
         return [
             ['email', 'trim'],
@@ -40,7 +40,7 @@ class ResendVerificationEmailForm extends Model
      *
      * @return bool whether the email was sent
      */
-    public function sendEmail(): bool
+    public function sendEmail()
     {
         $user = UserQuery::findOne([
             'email' => $this->email,

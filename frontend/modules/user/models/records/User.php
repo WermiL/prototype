@@ -3,7 +3,9 @@
 namespace frontend\modules\user\models\records;
 
 use Yii;
+use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
+use yii\web\IdentityInterface;
 
 /**
  * This is the model class for table "user".
@@ -21,12 +23,13 @@ use yii\behaviors\TimestampBehavior;
  * @property int $created_at
  * @property int $updated_at
  */
-class User extends \yii\db\ActiveRecord
+class User extends \yii\db\ActiveRecord implements IdentityInterface
 {
     const STATUS_DELETED = 0;
     const STATUS_INACTIVE = 9;
     const STATUS_ACTIVE = 10;
     const PASSWORD_RESET_TOKEN_EXPIRE = 3600;
+
     /**
      * {@inheritdoc}
      */
@@ -52,15 +55,18 @@ class User extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['email', 'nickname', 'first_name', 'last_name', 'auth_key', 'password_hash', 'created_at', 'updated_at'], 'required'],
+            [['email', 'auth_key', 'password_hash'], 'required'],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['email', 'nickname', 'first_name', 'last_name', 'verification_token', 'password_hash', 'password_reset_token'], 'string', 'max' => 255],
             [['auth_key'], 'string', 'max' => 32],
-            [['email'], 'unique'],
-            [['nickname'], 'unique'],
-            [['password_reset_token'], 'unique'],
+            [['email', 'nickname', 'password_reset_token'], 'unique'],
             ['status', 'default', 'value' => self::STATUS_INACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_INACTIVE, self::STATUS_DELETED]],
+            [['nickname', 'first_name', 'last_name', 'verification_token', 'password_reset_token'], 'trim'],
+            [['nickname', 'first_name', 'last_name', 'verification_token', 'password_reset_token'], 'filter',
+                'filter' => function ($value) {
+                    return ($value === '') ? null : $value;
+                }],
         ];
     }
 
@@ -86,6 +92,47 @@ class User extends \yii\db\ActiveRecord
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public static function findIdentity($id)
+    {
+        return static::findOne(['id' => $id, 'status' => self::STATUS_ACTIVE]);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public static function findIdentityByAccessToken($token, $type = null)
+    {
+        throw new NotSupportedException('temp');
+    }
+
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getId()
+    {
+        return $this->getPrimaryKey();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getAuthKey()
+    {
+        return $this->auth_key;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function validateAuthKey($authKey)
+    {
+        return $this->getAuthKey() === $authKey;
+    }
+
+    /**
      * Finds out if password reset token is valid
      *
      * @param string $token password reset token
@@ -97,7 +144,7 @@ class User extends \yii\db\ActiveRecord
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
+        $timestamp = (int)substr($token, strrpos($token, '_') + 1);
         $expire = self::PASSWORD_RESET_TOKEN_EXPIRE;
         return $timestamp + $expire >= time();
     }
